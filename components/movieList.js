@@ -15,7 +15,7 @@ class MovieList extends React.Component {
     return (
       <React.Fragment>
         {movies.map(movie => (
-          <div className="col-lg-4 col-md-6 mb-4">
+          <div key={movie.id} className="col-lg-4 col-md-6 mb-4">
             <div className="card h-100">
               <a href="#">
                 <img
