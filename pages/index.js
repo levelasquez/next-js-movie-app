@@ -4,14 +4,14 @@ import Carousel from '../components/carousel'
 import MovieList from '../components/movieList'
 import { getMovies } from '../actions'
 
-const Home = ({ movies }) => (
+const Home = ({ movies, images }) => (
   <div className="container">
     <div className="row">
       <div className="col-lg-3">
         <SideMenu />
       </div>
       <div className="col-lg-9">
-        <Carousel />
+        <Carousel images={images} />
         <div className="row">
           <MovieList movies={movies || []} />
         </div>
@@ -22,8 +22,12 @@ const Home = ({ movies }) => (
 
 Home.getInitialProps = async () => {
   const movies = await getMovies()
+  const images = movies.map(movie => ({
+    id: `image-${movie.id}`,
+    image: movie.image,
+  }))
 
-  return { movies }
+  return { movies, images }
 }
 
 export default Home
