@@ -10,20 +10,26 @@ const Movie = props => {
     <div className="container">
       <div className="jumbotron">
         <h1 className="display-4">{movie.name}</h1>
-        <p className="lead">this</p>
+        <p className="lead">{movie.description}</p>
         <hr className="my-4" />
-        <p>it</p>
+        <p>{movie.genre}</p>
         <a className="btn btn-primary btn-lg" href="#" role="button">
           Learn
         </a>
       </div>
-      <p>Some</p>
+      <p className="desc-text">{movie.longDesc}</p>
+
+      <style jsx>{`
+        .desc-text {
+          font-size: 21px;
+        }
+      `}</style>
     </div>
   )
 }
 
-Movie.getInitialProps = async () => {
-  const movie = await getMovieById('2')
+Movie.getInitialProps = async ({ query: { id } }) => {
+  const movie = await getMovieById(id)
 
   return { movie }
 }
