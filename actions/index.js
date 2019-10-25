@@ -35,4 +35,9 @@ const MOVIE_DATA = [
 ]
 
 export const getMovies = () =>
-  new Promise((resolve, reject) => setTimeout(() => resolve(MOVIE_DATA), 2000))
+  new Promise((resolve, reject) => setTimeout(() => resolve(MOVIE_DATA), 50))
+
+export const getMovieById = id =>
+  new Promise((resolve, reject) =>
+    setTimeout(() => resolve(MOVIE_DATA.find(movie => movie.id === id)), 50),
+  )
