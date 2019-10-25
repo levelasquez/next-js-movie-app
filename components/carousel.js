@@ -8,7 +8,7 @@ const Carousel = ({ images }) => (
       {images.map((image, index) => (
         <li
           key={image.id}
-          data-target={`#${image.id}`}
+          data-target="#carouselExampleIndicators"
           data-slide-to={index}
           className={index === 0 ? 'active' : ''}
         ></li>
