@@ -2,6 +2,8 @@ const next = require('next')
 const express = require('express')
 const bodyParser = require('body-parser')
 
+const moviesData = require('./data.json')
+
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
@@ -12,7 +14,7 @@ app.prepare().then(() => {
   server.use(bodyParser.json())
 
   server.get('/api/v1/movies', (req, res) => {
-    return res.json({ message: 'Hello World!' })
+    return res.json(moviesData)
   })
 
   server.post('/api/v1/movies', (req, res) => {
