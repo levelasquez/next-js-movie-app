@@ -1,8 +1,11 @@
 import Modal from './modal'
+import MovieCreateForm from './movieCreateForm'
 
 const SideMenu = ({ categories }) => (
   <div>
-    <Modal />
+    <Modal>
+      <MovieCreateForm />
+    </Modal>
     <h1 className="my-4">Movie DB</h1>
     <div className="list-group">
       {categories.map(category => (
