@@ -27,9 +27,7 @@ export const getMovies = () =>
   axios.get(`${BASE_URL}/api/v1/movies`).then(({ data: movies }) => movies)
 
 export const getMovieById = id =>
-  new Promise((resolve, reject) =>
-    setTimeout(() => resolve(MOVIE_DATA.find(movie => movie.id === id)), 50),
-  )
+  axios.get(`${BASE_URL}/api/v1/movie/${id}`).then(({ data: movie }) => movie)
 
 export const getCategories = () =>
   new Promise((resolve, reject) => setTimeout(() => resolve(CATEGORY_DATA), 50))
