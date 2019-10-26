@@ -75,3 +75,11 @@ export const getMovieById = id =>
 
 export const getCategories = () =>
   new Promise((resolve, reject) => setTimeout(() => resolve(CATEGORY_DATA), 50))
+
+export const createMovie = movie => {
+  MOVIE_DATA.push(movie)
+
+  return new Promise((resolve, reject) =>
+    setTimeout(() => resolve(MOVIE_DATA), 50),
+  )
+}

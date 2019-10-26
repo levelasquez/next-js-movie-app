@@ -1,4 +1,4 @@
-const Modal = ({ children }) => {
+const Modal = ({ children, hasSubmit }) => {
   let closeButton = null
 
   const submitModal = () => {
@@ -49,13 +49,15 @@ const Modal = ({ children }) => {
               >
                 Close
               </button>
-              <button
-                onClick={submitModal}
-                type="button"
-                className="btn btn-primary"
-              >
-                Save changes
-              </button>
+              {hasSubmit && (
+                <button
+                  onClick={submitModal}
+                  type="button"
+                  className="btn btn-primary"
+                >
+                  Save changes
+                </button>
+              )}
             </div>
           </div>
         </div>
