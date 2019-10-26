@@ -3,11 +3,17 @@ import MovieCreateForm from './movieCreateForm'
 import { createMovie } from '../actions'
 
 const SideMenu = ({ categories }) => {
-  const handleCreateMovie = movie => createMovie(movie).then(console.log)
+  let modal = null
+
+  const handleCreateMovie = movie => {
+    createMovie(movie).then(console.log)
+
+    modal.closeModal()
+  }
 
   return (
     <div>
-      <Modal hasSubmit={false}>
+      <Modal ref={ele => (modal = ele)} hasSubmit={false}>
         <MovieCreateForm handleFormSubmit={handleCreateMovie} />
       </Modal>
       <h1 className="my-4">Movie DB</h1>
