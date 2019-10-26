@@ -77,6 +77,7 @@ export const getCategories = () =>
   new Promise((resolve, reject) => setTimeout(() => resolve(CATEGORY_DATA), 50))
 
 export const createMovie = movie => {
+  movie.id = Math.random().toString(36).substr(2, 7)
   MOVIE_DATA.push(movie)
 
   return new Promise((resolve, reject) =>
