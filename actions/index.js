@@ -51,3 +51,6 @@ export const updateMovie = movie =>
   axios
     .patch(`${BASE_URL}/api/v1/movies/${movie.id}`, movie)
     .then(({ data: movie }) => movie)
+
+export const getPosts = () =>
+  axios.get(`${BASE_URL}/api/v1/posts`).then(({ data }) => data)
