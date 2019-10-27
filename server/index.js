@@ -20,7 +20,7 @@ app.prepare().then(() => {
     return res.json(moviesData)
   })
 
-  server.get('/api/v1/movie/:id', (req, res) => {
+  server.get('/api/v1/movies/:id', (req, res) => {
     const { id } = req.params
 
     return res.json(moviesData.find(movie => movie.id === id))
@@ -43,12 +43,26 @@ app.prepare().then(() => {
   })
 
   server.patch('/api/v1/movies/:id', (req, res) => {
-    const { id } = req.params
+    const {
+      params: { id },
+      body: movie,
+    } = req
+    const movieIndex = moviesData.findIndex(m => m.id === id)
+    moviesData[movieIndex] = movie
 
-    return res.json({ message: `Updating movie for id: ${id}` })
+    const pathToFile = path.join(__dirname, filePath)
+    const stringifiedData = JSON.stringify(moviesData, null, 2)
+
+    fs.writeFile(pathToFile, stringifiedData, err => {
+      if (err) {
+        return res.status(422).send(err)
+      }
+
+      return res.json(movie)
+    })
   })
 
-  server.delete('/api/v1/movie/:id', (req, res) => {
+  server.delete('/api/v1/movies/:id', (req, res) => {
     const { id } = req.params
     const movieIndex = moviesData.findIndex(movie => movie.id === id)
     moviesData.splice(movieIndex, 1)

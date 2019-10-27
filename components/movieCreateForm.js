@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const MovieCreateForm = ({ handleFormSubmit, initialData }) => {
+const MovieCreateForm = ({ handleFormSubmit, initialData, submitButton }) => {
   const [isInitialDataLoaded, setIsInitialDataLoaded] = useState(false)
   const defaultData = {
     name: '',
@@ -131,7 +131,7 @@ const MovieCreateForm = ({ handleFormSubmit, initialData }) => {
         </select>
       </div>
       <button onClick={submitForm} type="button" className="btn btn-primary">
-        Create
+        {submitButton || 'Create'}
       </button>
     </form>
   )

@@ -27,7 +27,7 @@ export const getMovies = () =>
   axios.get(`${BASE_URL}/api/v1/movies`).then(({ data: movies }) => movies)
 
 export const getMovieById = id =>
-  axios.get(`${BASE_URL}/api/v1/movie/${id}`).then(({ data: movie }) => movie)
+  axios.get(`${BASE_URL}/api/v1/movies/${id}`).then(({ data: movie }) => movie)
 
 export const getCategories = () =>
   new Promise((resolve, reject) => setTimeout(() => resolve(CATEGORY_DATA), 50))
@@ -41,4 +41,9 @@ export const createMovie = movie => {
 }
 
 export const deleteMovie = id =>
-  axios.delete(`${BASE_URL}/api/v1/movie/${id}`).then(({ data }) => data)
+  axios.delete(`${BASE_URL}/api/v1/movies/${id}`).then(({ data }) => data)
+
+export const updateMovie = movie =>
+  axios
+    .patch(`${BASE_URL}/api/v1/movies/${movie.id}`, movie)
+    .then(({ data: movie }) => movie)

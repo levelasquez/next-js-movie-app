@@ -1,12 +1,24 @@
+import { useRouter } from 'next/router'
 import MovieCreateForm from '../../../components/movieCreateForm'
-import { getMovieById } from '../../../actions'
+import { getMovieById, updateMovie } from '../../../actions'
 
-const EditMovie = ({ movie }) => (
-  <div className="container">
-    <h2>Edit the Movie</h2>
-    <MovieCreateForm initialData={movie} />
-  </div>
-)
+const EditMovie = ({ movie }) => {
+  const router = useRouter()
+
+  const handleUpdateMovie = movie =>
+    updateMovie(movie).then(updatedMovie => router.push(`/movies/${movie.id}`))
+
+  return (
+    <div className="container">
+      <h2>Edit the Movie</h2>
+      <MovieCreateForm
+        initialData={movie}
+        handleFormSubmit={handleUpdateMovie}
+        submitButton="Update"
+      />
+    </div>
+  )
+}
 
 EditMovie.getInitialProps = async ({ query: { id } }) => {
   const movie = await getMovieById(id)
