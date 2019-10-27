@@ -33,10 +33,9 @@ export const getCategories = () =>
   new Promise((resolve, reject) => setTimeout(() => resolve(CATEGORY_DATA), 50))
 
 export const createMovie = movie => {
-  movie.id = Math.random().toString(36).substr(2, 7)
-  MOVIE_DATA.push(movie)
+  movie.id = Math.random()
+    .toString(36)
+    .substr(2, 7)
 
-  return new Promise((resolve, reject) =>
-    setTimeout(() => resolve(MOVIE_DATA), 50),
-  )
+  return axios.post(`${BASE_URL}/api/v1/movies`, movie).then(({ data }) => data)
 }

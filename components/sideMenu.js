@@ -1,15 +1,18 @@
+import { useRouter } from 'next/router'
 import Modal from './modal'
 import MovieCreateForm from './movieCreateForm'
 import { createMovie } from '../actions'
 
 const SideMenu = ({ categories }) => {
+  const router = useRouter()
   let modal = null
 
-  const handleCreateMovie = movie => {
-    createMovie(movie).then(console.log)
+  const handleCreateMovie = movie =>
+    createMovie(movie).then(movies => {
+      modal.closeModal()
 
-    modal.closeModal()
-  }
+      router.push('/')
+    })
 
   return (
     <div>
