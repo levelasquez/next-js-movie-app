@@ -8,6 +8,8 @@ const Movie = props => {
 
   const handleDeleteMovie = id => () =>
     deleteMovie(id).then(() => router.push('/'))
+  
+  const handleEditMovie = id => () => router.push(`/movies/${id}/edit`)
 
   return (
     <div className="container">
@@ -21,11 +23,19 @@ const Movie = props => {
         </button>
         <button
           onClick={handleDeleteMovie(movie.id)}
-          className="btn btn-danger btn-lg"
+          className="btn btn-danger btn-lg mr-1"
           href="#"
           role="button"
         >
           Delete
+        </button>
+        <button
+          onClick={handleEditMovie(movie.id)}
+          className="btn btn-warning btn-lg"
+          href="#"
+          role="button"
+        >
+          Edit
         </button>
       </div>
       <p className="desc-text">{movie.longDesc}</p>

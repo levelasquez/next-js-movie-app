@@ -1,14 +1,17 @@
 import { useState } from 'react'
 
-const MovieCreateForm = ({ handleFormSubmit }) => {
-  const [form, setForm] = useState({
+const MovieCreateForm = ({ handleFormSubmit, initialData }) => {
+  const [isInitialDataLoaded, setIsInitialDataLoaded] = useState(false)
+  const defaultData = {
     name: '',
     description: '',
     rating: '',
     image: '',
     cover: '',
     longDesc: '',
-  })
+  }
+  const formData = initialData ? { ...initialData } : defaultData
+  const [form, setForm] = useState(formData)
 
   const handleChange = ({ target: { name, value } }) =>
     setForm({
