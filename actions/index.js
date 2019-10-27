@@ -6,6 +6,10 @@ const MOVIE_DATA = []
 
 const CATEGORY_DATA = [
   {
+    id: 'c-0',
+    name: 'all',
+  },
+  {
     id: 'c-1',
     name: 'drama',
   },
