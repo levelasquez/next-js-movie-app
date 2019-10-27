@@ -6,7 +6,9 @@ const EditMovie = ({ movie }) => {
   const router = useRouter()
 
   const handleUpdateMovie = movie =>
-    updateMovie(movie).then(updatedMovie => router.push(`/movies/${movie.id}`))
+    updateMovie(movie).then(updatedMovie =>
+      router.push('/movies/[id]', `/movies/${movie.id}`),
+    )
 
   return (
     <div className="container">
